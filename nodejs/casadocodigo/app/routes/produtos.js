@@ -13,7 +13,7 @@ module.exports = function(app) {
 
         var errors = req.validationErrors();
         if(errors){
-            res.format({
+            res.format({//content negotiation
                 html: function(){
                     res.status(400).render("produtos/form",{validationErrors:errors,produto:produto});
                 },
