@@ -48,7 +48,6 @@ module.exports = function(app) {
 
         produtoDao.lista(function(error,results,fields){
 
-
             res.format({
                 html: function(){
                     res.render("produtos/lista",{lista:results});

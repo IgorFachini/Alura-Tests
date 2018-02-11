@@ -6,7 +6,7 @@ var expressValidator = require('express-validator');
 module.exports = function() {
 
     var app = express();
-    app.use(express.static('./public'));
+    app.use(express.static('./public'));// arquivos estaticos, css,htmls,js etc, para q nao caia em rotas.
     app.set('view engine', 'ejs');
     app.set('views','./app/views');
 
@@ -23,12 +23,18 @@ module.exports = function() {
         .then('infra')
         .into(app);
 
+    // midware nosso,
     app.use(function(req, res, next){
         res.status(404).render("erros/404");
     });
 
     app.use(function(error,req, res, next){
-        res.status(500).render("erros/500");
+        console.log("nodeenv",process.env.NODE_ENV);
+        if (process.env.NODE_ENV == 'production') {
+            res.status(500).render("erros/500");
+            return;
+        }
+        next(error);
     });
     //tem que colocar na ordem, caso contrário ele passa pelo middleware e ainda não vai ter acontecido nenhum erro.
 
