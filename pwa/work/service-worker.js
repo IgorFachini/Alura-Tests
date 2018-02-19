@@ -1,23 +1,23 @@
 var dataCacheName = "weatherData-v1";
 var cacheName = "weatherPWA-step-6-3";
 var filesToCache = [
-  "/pwa/work/",
-  "/pwa/work/index.html",
-  "/pwa/work/scripts/app.js",
-  "/pwa/work/styles/inline.css",
-  "/pwa/work/images/clear.png",
-  "/pwa/work/images/cloudy-scattered-showers.png",
-  "/pwa/work/images/cloudy.png",
-  "/pwa/work/images/fog.png",
-  "/pwa/work/images/ic_add_white_24px.svg",
-  "/pwa/work/images/ic_refresh_white_24px.svg",
-  "/pwa/work/images/partly-cloudy.png",
-  "/pwa/work/images/rain.png",
-  "/pwa/work/images/scattered-showers.png",
-  "/pwa/work/images/sleet.png",
-  "/pwa/work/images/snow.png",
-  "/pwa/work/images/thunderstorm.png",
-  "/pwa/work/images/wind.png"
+  "/Web-Tests/pwa/work/",
+  "/Web-Tests/pwa/work/index.html",
+  "/Web-Tests/pwa/work/scripts/app.js",
+  "/Web-Tests/pwa/work/styles/inline.css",
+  "/Web-Tests/pwa/work/images/clear.png",
+  "/Web-Tests/pwa/work/images/cloudy-scattered-showers.png",
+  "/Web-Tests/pwa/work/images/cloudy.png",
+  "/Web-Tests/pwa/work/images/fog.png",
+  "/Web-Tests/pwa/work/images/ic_add_white_24px.svg",
+  "/Web-Tests/pwa/work/images/ic_refresh_white_24px.svg",
+  "/Web-Tests/pwa/work/images/partly-cloudy.png",
+  "/Web-Tests/pwa/work/images/rain.png",
+  "/Web-Tests/pwa/work/images/scattered-showers.png",
+  "/Web-Tests/pwa/work/images/sleet.png",
+  "/Web-Tests/pwa/work/images/snow.png",
+  "/Web-Tests/pwa/work/images/thunderstorm.png",
+  "/Web-Tests/pwa/work/images/wind.png"
 ];
 
 self.addEventListener("install", function(e) {
