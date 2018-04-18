@@ -14,6 +14,10 @@ VOLUMES: Lugar aonde salva os dados.Linkar uma pasta da vm, com o desktop.
 
 Rede default: 172.17.0.*
 
+Load Balancer: Distribui as requisicoes de forma que nao sobrecarregue.
+
+Docker Composer: Ajuda subir multiplos containers, seguindo o arquivo de config na extensao .yml.
+
 --------------------------------------------------------------------------------------
 
 Comandos:(docker) no comeco.
