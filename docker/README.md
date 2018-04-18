@@ -14,7 +14,7 @@ VOLUMES: Lugar aonde salva os dados.Linkar uma pasta da vm, com o desktop.
 
 Rede default: 172.17.0.*
 
-Load Balancer: Distribui as requisicoes de forma que nao sobrecarregue.
+NGINX: Load Balancer: Distribui as requisicoes de forma que nao sobrecarregue.
 
 Docker Composer: Ajuda subir multiplos containers, seguindo o arquivo de config na extensao .yml.
 
@@ -68,6 +68,8 @@ create minha-rede= criar rede
 --driver = tipo de drive por exemplo (bridge)
 ls = lista as redes
 
+exec container1 comando container3= executa comando entre containers
+
 
 
 ctrl D: exit
@@ -84,10 +86,83 @@ COPY . /var/www                 = Arquivos que ja estarao na imagem.
 WORKDIR /var/www                = diretorio base que comeca o cli.
 RUN npm install                 = quando a imagem estiver sendo construida executa esse comando.
 ENTRYPOINT ["npm", "start"]     = comando que executa quando inicia a imagem.
+CMD ["-g"]                      = parametros extras para ENTRYPOINT
 EXPOSE $PORT                    = porta de acesso externa.
 
 ---------------------------
-Publicando
+Publicando imagem
 
 docker login
 docker push (imagem)
+-----------------------------------
+YML, funciona como se fosse JSON,
+- = significa array
+
+Ex:
+
+version: '3"  = versao
+services:     = cada parte, imagem da aplicacao.
+    nginx:    = nome do servico
+        build:  =   localizacao
+            dockerfile: ./docker/nginx.dockerfile
+            context: .      = apartir da onde deve procurar
+        image: igorf/nginx
+        container_name: nginx
+        ports: 
+            - "80:80" = Porta de fora e dentrow
+        networks: 
+            - production-network
+        depends_on:         = depende de outra imagem antes de subir
+         - "node1"
+         - "node2"
+         - "node3"    
+    mongodb: 
+        image: mongo
+        networks:
+            - production-network
+    node1:
+        build:  =   localizacao
+            dockerfile: ./docker/alura-books.dockerfile
+            context: .      = apartir da onde deve procurar
+        image: igorf/alura-books
+        container_name: alura-books-1
+        ports:
+         - "3000"
+        networks:
+         - production-network
+        depends_on:
+         - "mongodb"
+     node2:
+        build:  =   localizacao
+            dockerfile: ./docker/alura-books.dockerfile
+            context: .      = apartir da onde deve procurar
+        image: igorf/alura-books
+        container_name: alura-books-2
+        ports:
+         - "3000"
+        networks:
+         - production-network
+        depends_on:
+         - "mongodb"
+     node3:
+        build:  =   localizacao
+            dockerfile: ./docker/alura-books.dockerfile
+            context: .      = apartir da onde deve procurar
+        image: igorf/alura-books
+        container_name: alura-books-3
+        ports:
+         - "3000"
+        networks:
+         - production-network
+        depends_on:
+         - "mongodb"
+
+networks: = cria network
+    production-network: = da um nome para o network
+        driver: bridge  = define o tipo do network
+
+
+---- comandos docker composer
+docker-compose build      = buildar no local do .yml
+docker-compose up         = sobe a aplicacao
+down                      = para aplicacao
