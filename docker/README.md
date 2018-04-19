@@ -166,3 +166,19 @@ networks: = cria network
 docker-compose build      = buildar no local do .yml
 docker-compose up         = sobe a aplicacao
 down                      = para aplicacao
+
+-------------------------------------
+Cloud
+
+Alugar servidor, amazon web services, digitalOcen, Microsoft Azure etc...
+Geralmete os servidores sao linux.
+
+Docker Cloud, solucao que gerencia o servidor.
+swarm mode = integrar diversos host do docker pra conversar entre si.
+Repositorios = aonde estao salvo as imagens do docker hub.
+Containers = imagem montada.
+services = pequenos servicos que compoem a aplicacao.
+Stacks = 
+Node Clusters = 
+Node = docke host instalado aonde ira subir os containers.
+Cloud Providers = Lista de servicos compativeis, que fornecem o servidor.
