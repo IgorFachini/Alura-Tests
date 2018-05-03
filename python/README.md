@@ -32,7 +32,8 @@ else:
 elif (chute < numero_secreto):
     //else com condicao de entrada
 
-int("12") = converte string para int
+int("12"): // converte string para int
+int(18.895629671768187): = 18 // fazer cast
 
 while (total_de_tentativas > 0): //laço com base na condicao verdadeira
         total_de_tentativas = total_de_tentativas - 1
@@ -50,3 +51,22 @@ se colocar numero, fara na sequencia dos numeros, e se colocar regras como {:.2f
 if (chute < 1 or chute > 100): // OR, OU condicao
 
 continue // no caso do for, while, sem sair do laço continua para a proxima iterecao
+
+import random
+random.random() // gera um número no intervalo entre 0.0 e 1.0, por EX: 0.6022965518496559
+random.randrange(1, 101)// gera numero aleatorio no range defindo
+
+abs(-10) = 10// retorna o valor absoluto
+
+import forca // imorta a classe forca.py
+
+funcao //
+def jogar():
+    blabla      
+    blabla  // define funcao com def
+
+chamando funcao
+jogar() // direto
+forca.jogar // de outra classe
+
+if (__name__ == "__main__"): //  __name__, e ela é preenchida com o valor __main__ caso o arquivo seja executado diretamente.
