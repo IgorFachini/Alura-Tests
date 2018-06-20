@@ -13,7 +13,7 @@ import time
 # Caso contrário, se esse switch não for fornecido, o OpenCV tentará acessar nossa webcam.
 # --buffer é o tamanho máximo de nosso deque, 
 # que mantém uma lista das coordenadas (x, y) anteriores da bola que estamos rastreando. 
-# Este deque nos permite desenhar a “contrail” da bola, detalhando seus locais passados.
+# Este deque nos permite desenhar a “rastro” da bola, detalhando seus locais passados.
 # Uma fila menor levará a uma cauda mais curta, enquanto uma fila maior criará uma cauda mais longa
 # (já que mais pontos estão sendo rastreados):
 ap = argparse.ArgumentParser()
@@ -26,17 +26,16 @@ args = vars(ap.parse_args())
 # define the lower and upper boundaries of the "green"
 # ball in the HSV color space, then initialize the
 # list of tracked points
+# definem os limites inferior e superior da cor verde no espaço de cores do HSV (que determinei usando o script range-detector na biblioteca de imutils). 
+# Esses limites de cor nos permitirão detectar a bola verde em nosso arquivo de vídeo. 
 greenLower = (77, 77, 77)
 greenUpper = (89, 255, 255)
+# inicializa o nosso deque de pts usando o tamanho máximo do buffer fornecido (que é padronizado para 64).
 pts = deque(maxlen=args["buffer"])
-# (29, 86, 6)
-# greenUpper = (64, 255, 255)
-# 357 266
-# [122, 124, 151] [192, 194, 255]
-# coordinated changed from:  0 0  to:  266 357
  
 # if a video path was not supplied, grab the reference
 # to the webcam
+# classe threaded VideoStream do imutils.video para eficiência.
 if not args.get("video", False):
 	vs = VideoStream(src=0).start()
  
@@ -62,6 +61,11 @@ while True:
  
 	# resize the frame, blur it, and convert it to the HSV
 	# color space
+	# pré-processam   um pouco o quadro . 
+	# Primeiro, redimensionamos o quadro para ter uma largura de  600px . 
+	# O downsizing do quadro nos permite processar o quadro mais rapidamente, levando a um aumento no FPS (já que temos menos dados de imagem para processar).
+	# Em seguida, desfocaremos o quadro para reduzir o ruído de alta frequência e permitiremos que nos concentremos nos objetos estruturais dentro do quadro, 
+	# como a bola. Por fim, converteremos o quadro   no espaço de cores HSV.
 	frame = imutils.resize(frame, width=600)
 	blurred = cv2.GaussianBlur(frame, (11, 11), 0)
 	hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
