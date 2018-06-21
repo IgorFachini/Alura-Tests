@@ -69,14 +69,41 @@ while True:
 	frame = imutils.resize(frame, width=600)
 	blurred = cv2.GaussianBlur(frame, (11, 11), 0)
 	hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
- 
+	# cv2.imshow('mask1',blurred)
+	# cv2.imshow('mask2',hsv)
+
 	# construct a mask for the color "green", then perform
 	# a series of dilations and erosions to remove any small
 	# blobs left in the mask
 	mask = cv2.inRange(hsv, greenLower, greenUpper)
+
 	mask = cv2.erode(mask, None, iterations=2)
+
 	mask = cv2.dilate(mask, None, iterations=2)
-    	# find contours in the mask and initialize the current
+
+
+
+	output = cv2.bitwise_and(frame,frame, mask = mask)	
+	cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[-2]
+	center = None
+	ballPixel = 0
+	if len(cnts) > 0:
+		c = max(cnts, key=cv2.contourArea)
+		((x,y,), radius) = cv2.minEnclosingCircle(c)
+		M = cv2.moments(c)
+	
+		
+		if radius > 5:
+			cv2.circle(output, (int(x), int(y)), int(radius), (0, 255, 255), 2)
+			cv2.circle(output, center, 5, (0, 0, 255), -1)
+			ballPixel = x
+			print(ballPixel)
+		else:
+			ballPixel = 0
+
+	cv2.imshow("image2", output)
+
+    # find contours in the mask and initialize the current
 	# (x, y) center of the ball
 	cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
 		cv2.CHAIN_APPROX_SIMPLE)
