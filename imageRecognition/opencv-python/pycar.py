@@ -25,19 +25,28 @@ rightRev = 11
 leftFwd = 13
 leftRev = 15
 
-hue = 77
-sat = 77
-val = 77
-hue2 = 89
+hue = 0
+sat = 70
+val = 133
+hue2 = 21
 sat2 = 255
-val2 = 255
+val2 = 255 # orange
+
+
+# hue = 77
+# sat = 77
+# val = 77
+# hue2 = 89
+# sat2 = 255
+# val2 = 255 green
+
 
 
 time.sleep(0.1)
 #low light
 #lower_yellow = np.array([20, 180, 40])
-lower_yellow = np.array([77, 77, 77])
-upper_yellow = np.array([89, 255, 255])
+lower_yellow = np.array([0, 70, 133])
+upper_yellow = np.array([21, 255, 255])
 
 while True:
 	# grab the current frame

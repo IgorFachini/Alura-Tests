@@ -28,8 +28,10 @@ args = vars(ap.parse_args())
 # list of tracked points
 # definem os limites inferior e superior da cor verde no espaço de cores do HSV (que determinei usando o script range-detector na biblioteca de imutils). 
 # Esses limites de cor nos permitirão detectar a bola verde em nosso arquivo de vídeo. 
-greenLower = (77, 77, 77)
-greenUpper = (89, 255, 255)
+greenLower = (0, 70, 133)
+greenUpper = (21, 255, 255) #orange
+# greenLower = (77, 77, 77) green
+# greenUpper = (89, 255, 255) green 
 # inicializa o nosso deque de pts usando o tamanho máximo do buffer fornecido (que é padronizado para 64).
 pts = deque(maxlen=args["buffer"])
  
