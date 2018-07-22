@@ -1,8 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import React from "react"; // criar novos elementos
+import ReactDOM from "react-dom"; // cria elemetos em memoria para simular o DOM
+import "./index.css";
+import App from "./App"; // importodando o modulo
+import registerServiceWorker from "./registerServiceWorker";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+// <App /> ira se tornar React.createElement(App)
+ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();

@@ -10,6 +10,12 @@ class = classe.
 className = estilo css.
 render = retorna um elemento React.
 props = acessa valores das subtags
+
+export default App {
+export = acessar externalmente
+default = o nome padrao, se nao tiver, temque usar {(nome)} pra chamar algo especifico.
+App = nome do modulo classe.
+}
 ex: 
 class Square extends React.Component {
   render() {
