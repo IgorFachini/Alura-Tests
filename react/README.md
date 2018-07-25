@@ -11,6 +11,18 @@ className = estilo css.
 render = retorna um elemento React.
 props = acessa valores das subtags
 
+variavel state = react disponibiliza, ela fica sendo observada, ataulizada etc..
+
+React recomenda inicializar dados, buscar, em metodos do ciclo de vida do react Ex: componentWillMount -> chamado antes de montar  o componente.
+para que a mudanca de estado seja notada, deve mudar o estado da variavel com this.setState, isso resultara na chamada de render() novamente.
+
+Agora, render nao renderiza tudo novamente, o HTML sempre sera convertido em React Elements, e aconselha que os elementos do HTML tenha id unicos, assim
+o react pode saber o que de fato mudou para mudar apenas aquele elemento do DOM.
+
+componentWillMount vs componentDidMount = Will sempre sera chamado quando state mudar, Did so sera chamado uma vez.
+
+
+
 export default App {
 export = acessar externalmente
 default = o nome padrao, se nao tiver, temque usar {(nome)} pra chamar algo especifico.
@@ -18,6 +30,9 @@ App = nome do modulo classe.
 }
 ex: 
 class Square extends React.Component {
+  constructor(){
+    super(); // deve ser chamado sempre por primeiro
+  }
   render() {
     return (
       <button className="square">

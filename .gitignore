@@ -86,3 +86,4 @@ lib-cov
 
 ./nodejs/casadocodigo/.idea/
 
+.vscode/
