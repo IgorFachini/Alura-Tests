@@ -2,8 +2,25 @@ import React, { Component } from "react";
 // import './App.css';
 import "./css/pure-min.css"; // estilo css
 import "./css/side-menu.css"; // modelo css
+import $ from "jquery";
 
 class App extends Component {
+  constructor() {
+    super(); // deve ser invocado por primeiro sempre
+    this.state = { lista: [] }; // state , disponiblizado pelo react, esta sempre sendo observada
+  }
+
+  componentDidMount() {
+    $.ajax({
+      url: "http://localhost:8080/api/autores",
+      dataType: "json",
+      success: function(resposta) {
+        console.log(this);
+        this.setState({ lista: resposta });
+      }.bind(this)
+    });
+  }
+
   render() {
     // renderiza o HTML
     return (
@@ -77,10 +94,14 @@ class App extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Alberto</td>
-                    <td>alberto.souza@caelum.com.br</td>
-                  </tr>
+                  {this.state.lista.map(function(autor) {
+                    return (
+                      <tr key={autor.id}>
+                        <td>{autor.nome}</td>
+                        <td>{autor.email}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
